@@ -1,0 +1,177 @@
+{% extends 'blog/../shared/base.html' %}
+{% load static %}
+{%block title%}
+{{title}}
+{% endblock %}
+{% block main %}
+	<section class="login first grey">
+		<div class="container">
+			<div class="box-wrapper">
+				<div class="box box-border">
+					<div class="box-body">
+						<h4 class="text-dark text-center text-xlarge mb-5">صفحه ثبت نام</h4>
+						<form>
+							<div class="form-group">
+								<label>نام کاربری</label>
+								<input type="text" id="in_username" class="form-control text-left">
+							</div>
+							<div class="form-group">
+								<label>ایمیل</label>
+								<input type="text" id="in_email" class="form-control text-left">
+							</div>
+							<div class="form-group">
+								<label class="fw">رمز عبور</label>
+								<div style="position:relative;display:flex;width:100%;">
+									<div style="position:relative;width:100%"><input type="password" id="in_password"
+											class="form-control text-left" style="padding-left: 60px;"><input
+											type="hidden" id="passeye-0" value="Hamed13720620#hameD">
+										<div class="btn btn-primary btn-sm d-none" id="passeye-toggle-0"
+											style="position:absolute;left:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;">
+											مشاهده</div>
+									</div>
+									<input type="hidden" id="passeye-0">
+									<div class="btn btn-primary btn-sm" id="passeye-toggle-0"
+										style="position:absolute;left:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;z-index: -1;">
+										مشاهده</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="fw">تکرار رمز عبور</label>
+								<div style="position:relative;display:flex;width:100%;">
+									<div style="position:relative;width:100%"><input type="password"
+											id="in_confirm_password" class="form-control text-left"
+											style="padding-left: 60px;"><input type="hidden" id="passeye-1">
+										<div class="btn btn-primary btn-sm d-none" id="passeye-toggle-1"
+											style="position:absolute;left:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;">
+											مشاهده</div>
+									</div>
+									<input type="hidden" id="passeye-0">
+									<div class="btn btn-primary btn-sm" id="passeye-toggle-0"
+										style="position:absolute;left:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;z-index: -1;">
+										مشاهده</div>
+								</div>
+							</div>
+							<div class="form-group text-right">
+								<button id="btn_register" class="btn btn-primary btn-block text-center">ثبت نام</button>
+							</div>
+							<div class="form-group text-center">
+								<span class="text-muted">قبلا ثبت نام کرده اید؟</span> <a href="login.html"
+									class="text-primary">ورود</a>
+							</div>
+						</form>
+                        <div>
+
+                      <div class="input-group">
+                        <div id="search-autocomplete" class="form-outline">
+                        <input type="search" id="in_value" class="form-control" placeholder="search"/>
+                        </div>
+                         <button type="button" id="btn_search" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                         </button>
+                      </div>
+                            <br>
+                          <div id="demo_info" style="background-color: #8e44ad;height: 500px;width: 700px;display: none;">
+                                    <ul style="padding: 25px;" class="list-group">
+                                      <li class="list-group-item disabled">لیست کاربران</li>
+                                    </ul>
+                                </div>
+                        </div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock main %}
+{% block r_footer %}
+    <script>
+
+    $(document).ready(function(){
+    GetInfo()
+
+    $('#in_value').keyup(function (){
+        if($('#in_value').val().length != 0){
+            GetSearch();
+
+        }else {
+            GetInfo();
+        }
+
+    })
+    })
+        function GetSendInfo(){
+            {#$('#btn_register').click(function (e){#}
+            {#    e.preventDefault();#}
+            {#    var username = $('#in_username').val()#}
+            {#    var email = $('#in_email').val()#}
+            {#    var password = $('#in_password').val()#}
+            {#    var confirm_password = $('#in_confirm_password').val()#}
+            {#    var user = {userName:username, Email:email, Password:password, ConfirmPassword:confirm_password}#}
+            {#    var url = "{% url 'khabar_account:api-register' %}"#}
+            {##}
+            {#        $.ajax({#}
+            {#            type: 'POST',#}
+            {#            datatype: 'json',#}
+            {#            data: {user},#}
+            {#            url : url,#}
+            {#            success: function (response){#}
+            {#                console.log('success')#}
+            {#            },#}
+            {#            error : function (error){#}
+            {#                console.log('error')#}
+            {#            }#}
+            {#        }).done(#}
+            {#            setTimeout(GetInfo, 100)#}
+            {#        )#}
+            {#        })#}
+        }
+
+
+        function GetInfo(){
+            var url = "{% url 'khabar_account:api-user' %}"
+
+                $('#demo_info').slideToggle('slow')
+                $.ajax({
+                    type : 'GET',
+                    datatype:'json',
+                    url : url,
+                    success : function (response){
+                       for (var i in response.data) {
+                           var li_element = $('<li></li>').addClass('list-group-item')
+                           $('.list-group').append(li_element.text(' ایمیل: ' + response.data[i].email + ' رمز عبور: ' + response.data[i].password + ' تکرار رمز عبور: ' + response.data[i].confirm_password ))
+                       }
+                    },
+                    error : function (error) {
+                        console.log(error)
+                    }
+                })}
+
+        function GetSearch(){
+
+                var url = "{% url 'khabar_account:search' %}"
+                $('.list-group').html(' ')
+                var value_search = $('#in_value').val()
+                var email_search = {q:value_search}
+                console.log(email_search)
+                $.ajax({
+                    type:'GET',
+                    datatype: 'json',
+                    data : email_search,
+                    url : url,
+                    success: function (response){
+                        for (var i in response.data) {
+                           var li_element = $('<li></li>').addClass('list-group-item')
+                           $('.list-group').append(li_element.text(' ایمیل: ' + response.data[i].email + ' رمز عبور: ' + response.data[i].password + ' تکرار رمز عبور: ' + response.data[i].confirm_password ))
+                       }
+                    },
+                    error: function (error){
+                        console.log(error)
+                    }
+            })
+
+        }
+
+
+    </script>
+{% endblock %}
