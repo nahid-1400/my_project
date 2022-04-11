@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from extensions.utils import django_jalali_converter
-
+from django.utils.html import format_html
 
 
 
@@ -76,7 +76,9 @@ class Post(models.Model):
         return self.category.filter(status=True)
     category_published.short_description = 'دسته بندی'
 
-
+    def image_tag(self):
+        return format_html("<img height=100px width=110px style='border-radius: 5px;'  src='{}'>".format(self.image.url))
+    image_tag.short_description = 'تصویر'
     objects = PostManager()
 
 
