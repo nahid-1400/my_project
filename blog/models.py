@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from extensions.utils import django_jalali_converter
 from django.utils.html import format_html
-
+from django.contrib.auth.models import User
 
 
 
@@ -44,15 +44,16 @@ class PostManager(models.Manager):
 
 
 class Post(models.Model):
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='articles', verbose_name='نویسنده')
     STATUS_CHOICES = (
-        ('d',' پیش نویس'),
+        ('d', ' پیش نویس'),
         ('p', 'منتشر شده')
     )
     title = models.CharField(max_length=200, verbose_name='عنوان')
     slug = models.SlugField(max_length=100, unique=True, verbose_name='عنوان در url')
     description = models.TextField(verbose_name='توضیحات')
     image = models.ImageField(upload_to='image_post', verbose_name='تصویر')
-    published = models.DateTimeField(default=timezone.now(), verbose_name='زمان انتشار')
+    published_time = models.DateTimeField(default=timezone.now(), verbose_name='زمان انتشار')
     created = models.DateTimeField(auto_now_add=True, verbose_name='ایجاد شده در')
     updated = models.DateTimeField(auto_now=True, verbose_name='اخرین به روز رسانی')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
@@ -62,19 +63,19 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'پست'
         verbose_name_plural = 'پست ها'
-        ordering = ['-published']
+        ordering = ['-published_time']
 
 
     def __str__(self):
         return self.title
 
     def j_published(self):
-        return django_jalali_converter(self.published)
+        return django_jalali_converter(self.published_time)
     j_published.short_description = 'زمان انتشار'
 
 
     def image_tag(self):
-        return format_html("<img height=100px width=110px style='border-radius: 5px;'  src='{}'>".fomat(self.image.urlr))
+        return format_html("<img height=100px width=110px style='border-radius: 5px;'  src='{}'>".format(self.image.url))
     image_tag.short_description = 'تصویر'
     objects = PostManager()
 

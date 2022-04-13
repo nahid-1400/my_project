@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse, Http404
 from .models import Post
@@ -77,3 +78,17 @@ class CateGoryList(ListView):
     def get_queryset(self):
         category = CateGory.objects.category_active()
         return category
+
+class AuthorList(ListView):
+    paginate_by = 2
+    template_name = 'blog/author_page.html'
+    def get_queryset(self):
+        global author
+        username = self.kwargs.get('username')
+        author = get_object_or_404(User, username=username)
+        return author.articles.published()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['author'] = author
+        return context

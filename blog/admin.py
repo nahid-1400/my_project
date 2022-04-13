@@ -39,18 +39,17 @@ def make_draft(self, request, queryset):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('image_tag', 'title', 'j_published', 'updated', 'status', 'category_to_str', 'number_post')
-    list_filter = ('published', 'status')
+    list_display = ('title', 'image_tag', 'author', 'j_published', 'updated', 'status', 'category_to_str', 'number_post')
+    list_filter = ('published_time', 'status', 'author')
     search_fields = ('title', 'description')
-    prepopulated_fields = {'slug':('title',)}
+    prepopulated_fields = {'slug': ('title',)}
     ordering = ['-status']
     actions = [make_published, make_draft]
 
 
 
     def category_to_str(self, obj):
-        return ', '.join([category.title for category in obj.category_active()])
-
+        return ', '.join([category.title for category in obj.category.category_active()])
     category_to_str.short_description = 'دسته بندی'
 
 
