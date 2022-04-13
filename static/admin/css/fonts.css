@@ -14,7 +14,13 @@
 
 @font-face {
     font-family: 'Vazir';
-    src: url('../fonts/Farsi-Digits-Without-Latin/Vazir.woff');
+    src: url('../fonts/vazir-font-v16.1.0/Vazir.woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'IranNastaliq';
+    src: url('../fonts/irannastaligh/IranNastaliq.ttf');
     font-weight: 300;
     font-style: normal;
 }

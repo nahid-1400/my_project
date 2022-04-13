@@ -22,12 +22,12 @@ class CateGory(models.Model):
     parent = models.ForeignKey('self', default=None, blank=True, null=True, on_delete=models.CASCADE, related_name='children', verbose_name='والد')
     status = models.BooleanField(default=True, verbose_name='این دسته بندی  نمایش داده شوند؟')
     position = models.IntegerField(verbose_name='پوزیشن')
+    image = models.ImageField(upload_to='category', default='category/defualt.jpg', verbose_name='تصویر دسته بندی')
 
 
     class Meta:
         verbose_name = 'دسته بندی'
         verbose_name_plural = 'دسته بندی ها'
-        ordering = ['position']
 
     def __str__(self):
         return self.title
@@ -72,12 +72,9 @@ class Post(models.Model):
         return django_jalali_converter(self.published)
     j_published.short_description = 'زمان انتشار'
 
-    def category_published(self):
-        return self.category.filter(status=True)
-    category_published.short_description = 'دسته بندی'
 
     def image_tag(self):
-        return format_html("<img height=100px width=110px style='border-radius: 5px;'  src='{}'>".format(self.image.url))
+        return format_html("<img height=100px width=110px style='border-radius: 5px;'  src='{}'>".fomat(self.image.urlr))
     image_tag.short_description = 'تصویر'
     objects = PostManager()
 

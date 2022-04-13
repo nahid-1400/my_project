@@ -49,7 +49,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
     def category_to_str(self, obj):
-        return ', '.join([category.title for category in obj.category_published()])
+        return ', '.join([category.title for category in obj.category_active()])
 
     category_to_str.short_description = 'دسته بندی'
 

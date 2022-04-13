@@ -2,11 +2,11 @@
                                         {% for cat in cat.children.category_active %}
                                             {% if cat.children.all  %}
 										<li class="dropdown dropdown">
-									<a href="{% url 'blog:category' cat.slug %}">{{ cat.title }} <i class="fa fa-angle-left"></i></a>
+									<a href="{% url 'blog:article-category' cat.slug %}">{{ cat.title }} <i class="fa fa-angle-left"></i></a>
                                         {% include 'shared/category_loop.html' %}
 								</li>
                                  {% else %}
-                                       <li><a href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a></li>
+                                       <li><a href="{% url 'blog:article-category' cat.slug %}">{{cat.title}}</a></li>
                                 {% endif %}
 
                                         {% endfor %}

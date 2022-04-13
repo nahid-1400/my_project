@@ -99,7 +99,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 14px;
-    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    font-family: "Vazir","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
     color: var(--body-fg);
     background: var(--body-bg);
 }
@@ -476,7 +476,7 @@ input, textarea, select, .form-row p, form .button {
     margin: 2px 0;
     padding: 2px 3px;
     vertical-align: middle;
-    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    font-family: "Vazir", "Lucida Grande", Verdana, Arial, sans-serif;
     font-weight: normal;
     font-size: 13px;
 }
@@ -591,7 +591,7 @@ input[type=button][disabled].default {
     font-weight: 400;
     font-size: 13px;
     text-align: left;
-    background: var(--primary);
+    background: #a41515;
     color: var(--header-link-color);
 }
 
@@ -704,7 +704,7 @@ td ul.errorlist + input, td ul.errorlist + select, td ul.errorlist + textarea {
 /* BREADCRUMBS */
 
 div.breadcrumbs {
-    background: var(--breadcrumbs-bg);
+    background: #ba2121;
     padding: 10px 40px;
     border: none;
     color: var(--breadcrumbs-fg);
@@ -900,7 +900,7 @@ table#change-history tbody th {
     justify-content: space-between;
     align-items: center;
     padding: 10px 40px;
-    background: var(--header-bg);
+    background: #904157;
     color: var(--header-color);
     overflow: hidden;
 }
@@ -1050,3 +1050,8 @@ table#change-history tbody th {
 .popup #header {
     padding: 10px 20px;
 }
+
+#header {
+}
+
+

@@ -1,0 +1,125 @@
+{% extends 'blog/../shared/base.html' %}
+{% load static %}
+{% load render_partial %}
+{% load base_tags %}
+{% block header %}
+    {% header_view %}
+{% endblock %}
+{% block main %}
+
+<section class="category first" style="padding-top: 366px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-8 text-left">
+					<div class="row">
+                                {% block cat_title %}
+                                {% endblock %}
+                    </div>
+                    {% block article %}
+                    {% endblock %}
+
+                    {% block paginator %}
+                    {% endblock %}
+
+					</div>
+				</div>
+				<div class="col-md-12 col-lg-4 sidebar">
+					<aside>
+						<div class="aside-body">
+							<figure class="ads">
+								<a href="single-post.html">
+									<img src="{% static 'blog/images/ad.png' %}">
+								</a>
+								<figcaption class="text-center">تبلغات</figcaption>
+							</figure>
+						</div>
+					</aside>
+					<aside>
+						<h1 class="aside-title">اخبار جدید</h1>
+						<div class="aside-body">
+							<article class="article-fw">
+								<div class="inner">
+									<figure>
+										<a href="single-post.html">
+											<img src="{% static 'blog/images/news/img12.jpg' %}">
+										</a>
+									</figure>
+									<div class="details">
+										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a>
+										</h1>
+										<p>
+											لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
+											تولید سادگی نامفهوملورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.
+										</p>
+										<div class="detail">
+											<div class="time">20 فروردین ۱۳۹۸</div>
+											<div class="category"><a href="category.html">سلامت</a></div>
+										</div>
+									</div>
+								</div>
+							</article>
+							<div class="line"></div>
+							<article class="article-mini">
+								<div class="inner">
+									<figure>
+										<a href="single-post.html">
+											<img src="{% static 'blog/images/news/img05.jpg' %}">
+										</a>
+									</figure>
+									<div class="padding">
+										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a>
+										</h1>
+										<div class="detail">
+											<div class="category"><a href="category.html">{{ category.title }}</a></div>
+											<div class="time">19 فروردین ۱۳۹۸</div>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="article-mini">
+								<div class="inner">
+									<figure>
+										<a href="single-post.html">
+											<img src="{% static 'blog/images/news/img02.jpg' %}">
+										</a>
+									</figure>
+									<div class="padding">
+										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a>
+										</h1>
+										<div class="detail">
+											<div class="category"><a href="category.html">گردشگری</a></div>
+											<div class="time">18 فروردین ۱۳۹۸</div>
+										</div>
+									</div>
+								</div>
+							</article>
+
+						</div>
+					</aside>
+					<aside>
+						<div class="aside-body">
+							<form class="newsletter">
+								<div class="icon">
+									<i class="ion-ios-email-outline"></i>
+									<h1 class="text-center">خبرنامه</h1>
+								</div>
+								<div class="input-group">
+									<input type="email" class="form-control email" placeholder="ایمیل شما">
+									<div class="input-group-btn">
+										<button class="btn btn-primary"><i class="ion-paper-airplane mr-0"></i></button>
+									</div>
+								</div>
+								<p>برای دریافت آخرین اخبار، ایمیل خود را وارد کنید</p>
+							</form>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock main %}
+
+{% block footer %}
+    {% footer_view %}
+{% endblock %}

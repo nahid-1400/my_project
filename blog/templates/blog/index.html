@@ -46,7 +46,7 @@
 								<img src="{% static 'blog/images/news/img04.jpg'%}" alt="Sample Article">
 							</figure>
 							<div class="details">
-								<div class="category"><a href="category.html"> فناوری     </a></div>
+								<div class="category"><a href="article_category.html"> فناوری     </a></div>
 								<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
 										ایپسوم
 										متن ساختگی با تولید سادگی</a></h1>
@@ -61,7 +61,7 @@
 								<img src="{% static 'blog/images/news/img14.jpg'%}" alt="Sample Article">
 							</figure>
 							<div class="details">
-								<div class="category"><a href="category.html">گردشگری</a></div>
+								<div class="category"><a href="article_category.html">گردشگری</a></div>
 								<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a>
 								</h1>
 								<div class="time">۱۲ فروردین ۱۳۹۹</div>
@@ -75,7 +75,7 @@
 								<img src="{% static 'blog/images/news/img13.jpg'%}" alt="Sample Article">
 							</figure>
 							<div class="details">
-								<div class="category"><a href="category.html">حوادث</a></div>
+								<div class="category"><a href="article_category.html">حوادث</a></div>
 								<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی </a></h1>
 								<div class="time">۱۷ فروردین 399</div>
 							</div>
@@ -88,7 +88,7 @@
 								<img src="{% static 'blog/images/news/img05.jpg'%}" alt="Sample Article">
 							</figure>
 							<div class="details">
-								<div class="category"><a href="category.html">سلامت</a></div>
+								<div class="category"><a href="article_category.html">سلامت</a></div>
 								<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
 										ایپسوم
 										متن ساختگی با تولید سادگی نامفهوم</a></h1>
@@ -120,7 +120,7 @@
 
 												<div class="category">
                                                     {% for cat in my_article.category_published.all %}
-											            <a href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+											            <a href="{% url 'blog:article-category' cat.slug %}">{{cat.title}}</a>
                                                     {% endfor %}
                                                 </div>
 											</div>
@@ -192,7 +192,7 @@
 											<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 												</a></h1>
 											<div class="detail">
-												<div class="category"><a href="category.html">سلامت</a></div>
+												<div class="category"><a href="article_category.html">سلامت</a></div>
 												<div class="time">12 اردیبهشت ۱۳۹۹</div>
 											</div>
 										</div>
@@ -209,7 +209,7 @@
 											<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 												</a></h1>
 											<div class="detail">
-												<div class="category"><a href="category.html">سلامت</a></div>
+												<div class="category"><a href="article_category.html">سلامت</a></div>
 												<div class="time">23 فروردین ۱۳۹۸</div>
 											</div>
 										</div>
@@ -226,7 +226,7 @@
 											<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 												</a></h1>
 											<div class="detail">
-												<div class="category"><a href="category.html">سلامت</a></div>
+												<div class="category"><a href="article_category.html">سلامت</a></div>
 												<div class="time">11 فروردین ۱۳۹۸</div>
 											</div>
 										</div>
@@ -243,7 +243,7 @@
 											<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 												</a></h1>
 											<div class="detail">
-												<div class="category"><a href="category.html">گردشگری</a></div>
+												<div class="category"><a href="article_category.html">گردشگری</a></div>
 												<div class="time">۲۷ اسفند ۱۳۹۸</div>
 											</div>
 										</div>
@@ -260,7 +260,7 @@
 											<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 												</a></h1>
 											<div class="detail">
-												<div class="category"><a href="category.html">فناوری</a></div>
+												<div class="category"><a href="article_category.html">فناوری</a></div>
 												<div class="time">20 اسفند ۱۳۹۸</div>
 											</div>
 										</div>
@@ -277,7 +277,7 @@
 											<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 												</a></h1>
 											<div class="detail">
-												<div class="category"><a href="category.html">فناوری</a></div>
+												<div class="category"><a href="article_category.html">فناوری</a></div>
 												<div class="time">12 اسفند ۱۳۹۸</div>
 											</div>
 										</div>
@@ -336,7 +336,7 @@
 										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 											</a></h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">سلامت</a></div>
+											<div class="category"><a href="article_category.html">سلامت</a></div>
 											<div class="time">12 اردیبهشت ۱۳۹۹</div>
 										</div>
 									</div>
@@ -353,7 +353,7 @@
 										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 											</a></h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">سلامت</a></div>
+											<div class="category"><a href="article_category.html">سلامت</a></div>
 											<div class="time">23 فروردین ۱۳۹۸</div>
 										</div>
 									</div>
@@ -370,7 +370,7 @@
 										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 											</a></h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">سلامت</a></div>
+											<div class="category"><a href="article_category.html">سلامت</a></div>
 											<div class="time">11 فروردین ۱۳۹۸</div>
 										</div>
 									</div>
@@ -387,7 +387,7 @@
 										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 											</a></h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">گردشگری</a></div>
+											<div class="category"><a href="article_category.html">گردشگری</a></div>
 											<div class="time">۲۷ اسفند ۱۳۹۸</div>
 										</div>
 									</div>
@@ -404,7 +404,7 @@
 										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 											</a></h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">فناوری</a></div>
+											<div class="category"><a href="article_category.html">فناوری</a></div>
 											<div class="time">20 اسفند ۱۳۹۸</div>
 										</div>
 									</div>
@@ -421,7 +421,7 @@
 										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
 											</a></h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">فناوری</a></div>
+											<div class="category"><a href="article_category.html">فناوری</a></div>
 											<div class="time">12 اسفند ۱۳۹۸</div>
 										</div>
 									</div>
@@ -787,7 +787,7 @@
 									<div class="details">
 										<div class="detail">
 											<div class="time">۲۸ اسفند ۱۳۹۸</div>
-											<div class="category"><a href="category.html">ورزشی</a></div>
+											<div class="category"><a href="article_category.html">ورزشی</a></div>
 										</div>
 										<h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی
 												نامفهوم</a>
@@ -812,7 +812,7 @@
 												نامفهوم</a>
 										</h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">سلامت</a></div>
+											<div class="category"><a href="article_category.html">سلامت</a></div>
 											<div class="time">۶ فروردین ۱۳۹۹</div>
 										</div>
 									</div>
@@ -830,7 +830,7 @@
 												نامفهوم</a>
 										</h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">گردشگری</a></div>
+											<div class="category"><a href="article_category.html">گردشگری</a></div>
 											<div class="time">۸ فروردین ۱۳۹۸</div>
 										</div>
 									</div>
@@ -848,7 +848,7 @@
 												نامفهوم</a>
 										</h1>
 										<div class="detail">
-											<div class="category"><a href="category.html">سلامت</a></div>
+											<div class="category"><a href="article_category.html">سلامت</a></div>
 											<div class="time">۱۰ فروردین ۱۳۹۹</div>
 										</div>
 									</div>
@@ -959,7 +959,7 @@
 					<div class="padding">
 						<div class="detail">
 							<div class="time">۱۱ فروردین ۱۳۹۹</div>
-							<div class="category"><a href="category.html">گردشگری</a></div>
+							<div class="category"><a href="article_category.html">گردشگری</a></div>
 						</div>
 						<h2><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a></h2>
 						<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
@@ -976,7 +976,7 @@
 					<div class="padding">
 						<div class="detail">
 							<div class="time">۱۲ فروردین ۱۳۹۹</div>
-							<div class="category"><a href="category.html">ورزشی</a></div>
+							<div class="category"><a href="article_category.html">ورزشی</a></div>
 						</div>
 						<h2><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a></h2>
 						<p> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
@@ -993,7 +993,7 @@
 					<div class="padding">
 						<div class="detail">
 							<div class="time">۱۴ فروردین ۱۳۹۹</div>
-							<div class="category"><a href="category.html">سلامت</a></div>
+							<div class="category"><a href="article_category.html">سلامت</a></div>
 						</div>
 						<h2><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a></h2>
 						<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
@@ -1010,7 +1010,7 @@
 					<div class="padding">
 						<div class="detail">
 							<div class="time">۱۵ فروردین ۱۳۹۹</div>
-							<div class="category"><a href="category.html">گردشگری</a></div>
+							<div class="category"><a href="article_category.html">گردشگری</a></div>
 						</div>
 						<h2><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a></h2>
 						<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
@@ -1027,7 +1027,7 @@
 					<div class="padding">
 						<div class="detail">
 							<div class="time">۱۶ فروردین ۱۳۹۹</div>
-							<div class="category"><a href="category.html">گردشگری</a></div>
+							<div class="category"><a href="article_category.html">گردشگری</a></div>
 						</div>
 						<h2><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a></h2>
 						<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
@@ -1044,7 +1044,7 @@
 					<div class="padding">
 						<div class="detail">
 							<div class="time">۱۷ فروردین ۱۳۹۹</div>
-							<div class="category"><a href="category.html">گردشگری</a></div>
+							<div class="category"><a href="article_category.html">گردشگری</a></div>
 						</div>
 						<h2><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a></h2>
 						<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>

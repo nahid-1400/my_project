@@ -55,11 +55,11 @@ class DetailClass(DetailView):
 #         'category': category,
 #         'title': 'دسته بندی',
 #     }
-#     return render(request, 'blog/category.html', context)
+#     return render(request, 'blog/article_category.html', context)
 
-class CateGoryList(ListView):
+class ArticleCateGoryList(ListView):
     paginate_by = 2
-    template_name = 'blog/category.html'
+    template_name = 'blog/article_category.html'
     def get_queryset(self):
         global category
         slug = self.kwargs.get('slug')
@@ -70,3 +70,10 @@ class CateGoryList(ListView):
         context = super().get_context_data()
         context['category'] = category
         return context
+
+class CateGoryList(ListView):
+    paginate_by = 5
+    template_name = 'blog/category.html'
+    def get_queryset(self):
+        category = CateGory.objects.category_active()
+        return category
