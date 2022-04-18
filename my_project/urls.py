@@ -22,6 +22,7 @@ from my_project.settings import MEDIA_URL
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
+    path('account/', include('account.urls')),
 ]
 
 if settings.DEBUG:
