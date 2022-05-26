@@ -2,8 +2,8 @@ from django.db import models
 from django.utils import timezone
 from extensions.utils import django_jalali_converter
 from django.utils.html import format_html
-from django.contrib.auth.models import User
-
+from account.models import User
+from django.shortcuts import reverse
 
 
 class CatGoryManager(models.Manager):
@@ -44,7 +44,7 @@ class PostManager(models.Manager):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='articles', verbose_name='نویسنده')
+    author = models.ForeignKey(User, default=None, on_delete=models.CASCADE, related_name='articles', verbose_name='نویسنده')
     STATUS_CHOICES = (
         ('d', ' پیش نویس'),
         ('p', 'منتشر شده')
@@ -58,7 +58,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name='اخرین به روز رسانی')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
     category = models.ManyToManyField(CateGory, verbose_name='دسته بندی', related_name='post_category')
-    number_post = models.IntegerField(unique=True, blank=True, null=True, default=1, verbose_name='شماره پست')
+    number_post = models.IntegerField(unique=True, blank=True, null=True, verbose_name='شماره پست')
 
     class Meta:
         verbose_name = 'پست'
@@ -68,6 +68,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('account:home')
 
     def j_published(self):
         return django_jalali_converter(self.published_time)
@@ -79,6 +82,9 @@ class Post(models.Model):
     image_tag.short_description = 'تصویر'
     objects = PostManager()
 
+    def category_to_str(self):
+        return ', '.join([category.title for category in self.category.category_active()])
+    category_to_str.short_description = 'دسته بندی'
 
 
 

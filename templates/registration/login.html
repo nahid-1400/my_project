@@ -1,12 +1,14 @@
-
 {% extends 'blog/../shared/base.html' %}
 {% load base_tags %}
 {% load render_partial %}
 {% load base_tags %}
 {%load static%}
+{% load widget_tweaks  %}
+
 {%block title%}
-{{title}}
+Login
 {% endblock %}
+
 {% block header %}
     {% header_view %}
 {% endblock %}
@@ -18,10 +20,17 @@
 					<div class="box-body">
 						<h4 class="text-dark text-center text-xlarge mb-5">صفحه ورود</h4>
 						<form method="post">
+                            {% if form.non_field_errors %}
+                                <div class="errors">
+                                    {% for error in form.non_field_errors %}
+                                        <p style="color:red">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                             {% csrf_token %}
 							<div class="form-group">
 								<label>نام کاربری </label>
-                                {{ form.username }}
+                                {{ form.username|add_class:"form-control text-left" }}
 							</div>
 							<div class="form-group">
 								<label class="fw">رمز عبور
@@ -29,7 +38,7 @@
 										اید؟</a>
 								</label>
 								<div style="position:relative;display:flex;width:100%;">
-									<div style="position:relative;width:100%">{{ form.password }}<input
+									<div style="position:relative;width:100%">{{ form.password|add_class:"form-control text-left" }}<input
 											type="hidden" id="passeye-0" value="">
 										<div class="btn btn-primary btn-sm d-none" id="passeye-toggle-0"
 											style="position:absolute;left:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;">

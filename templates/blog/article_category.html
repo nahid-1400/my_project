@@ -35,7 +35,7 @@
 										<div class="time"><i class="fa fa-clock"></i> {{post.j_published}}</div>
 									</div>
 									<h1 class="pt-0"><a href="{% url 'blog:detail' post.slug post.id %}">{{ post.title|truncatewords:20  }}</a></h1>
-									<p>{{ post.description|truncatewords:40 }}
+									<p>{{ post.description|striptags|truncatewords:40 }}
 									</p>
 									<footer class="mt-2">
 										<a href="#" class="love"><i class="ion-android-favorite-outline"></i>

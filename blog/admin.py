@@ -25,7 +25,7 @@ class CatGoryAdmin(admin.ModelAdmin):
 admin.site.register(CateGory, CatGoryAdmin)
 
 
-admin.site.disable_action('delete_selected')
+# admin.site.disable_action('delete_selected')
 
 @admin.action(description='انتشار مقالات')
 def make_published(self, request, queryset):
@@ -48,9 +48,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 
-    def category_to_str(self, obj):
-        return ', '.join([category.title for category in obj.category.category_active()])
-    category_to_str.short_description = 'دسته بندی'
+
 
 
 admin.site.register(Post, PostAdmin)

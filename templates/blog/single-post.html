@@ -3,7 +3,7 @@
 {% load render_partial %}
 {% load base_tags %}
 {%block title%}
-{{title}} | {{post.title}}
+ {{post.title}}
 {% endblock %}
 {% block header %}
     {% header_view %}
@@ -147,7 +147,7 @@
 								</figure>
 							</div>
 
-							<p>{{ post.description|linebreaks}} </p>
+							<p>{{ post.description|safe}} </p>
 						</div>
 						<footer>
 							<div class="col d-inline-block pr-0">

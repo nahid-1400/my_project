@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from account.models import User
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse, Http404
 from .models import Post

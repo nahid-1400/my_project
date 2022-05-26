@@ -125,7 +125,7 @@
                                                 </div>
 											</div>
 											<h2><a href="{% url 'blog:detail' my_article.slug my_article.id%}">{{ my_article.title|truncatewords:20 }}</a></h2>
-											<p style="">{{ my_article.description|truncatewords:40 }}</p>
+											<p style="">{{ my_article.description|striptags|truncatewords:40 }}</p>
 											<footer>
 												<a class="love" href="#"><i class="ion-android-favorite-outline"></i>
 													<div>۳۲۷</div>
