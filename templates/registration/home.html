@@ -79,12 +79,17 @@
                       <th>دسته بندی ها</th>
                       <th>توضیحات</th>
                       <th>وضعیت</th>
+                      <th>وضعیت</th>
                     </tr>
                   </thead>
                   <tbody>
                   {% for article in object_list %}
                     <tr>
-                      <td>{{ article.title }}</td>
+                    {% if article.status == 'd' or user.is_superuser %}
+                      <td><a href="{% url 'account:article-update' article.id %}">{{ article.title }}</a></td>
+                    {% else %}
+                        <td>{{ article.title }}</td>
+                    {% endif %}
                         <td><img src="{{ article.image.url}}" width="70px" height="70px"></td>
                       <td>{{ article.author.username}}</td>
                       <td>{{ article.j_published }}</td>
@@ -96,8 +101,13 @@
                             <a target="_blank" class="badge badge-primary" href="{% url 'blog:detail' article.slug article.id %}">نمایش در سایت</a>
                           {% else %}
                             <span class="badge badge-danger">پیشن نویس</span>
-                        {% endif %}
+                                                    {% endif %}
                       </td>
+                    <td>
+                      {% if user.is_superuser %}
+                      <a type="button" class="btn btn-danger" href="{% url 'account:article-delete' article.id %}">حذف</a>
+                        {% endif %}
+                    </td>
                     </tr>
                    {% endfor %}
 
