@@ -47,7 +47,9 @@ class Post(models.Model):
     author = models.ForeignKey(User, default=None, on_delete=models.CASCADE, related_name='articles', verbose_name='نویسنده')
     STATUS_CHOICES = (
         ('d', ' پیش نویس'),
-        ('p', 'منتشر شده')
+        ('p', 'منتشر شده'),
+        ('i', 'در حال بررسی'),
+        ('b', 'برگشت داده شده'),
     )
     title = models.CharField(max_length=200, verbose_name='عنوان')
     slug = models.SlugField(max_length=100, unique=True, verbose_name='عنوان در url')
@@ -59,6 +61,8 @@ class Post(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
     category = models.ManyToManyField(CateGory, verbose_name='دسته بندی', related_name='post_category')
     number_post = models.IntegerField(unique=True, blank=True, null=True, verbose_name='شماره پست')
+    is_special = models.BooleanField(default=False, verbose_name='مقاله ویژه')
+
 
     class Meta:
         verbose_name = 'پست'

@@ -2,50 +2,48 @@
 {% block title %}
 دسته بندی ها
 {% endblock %}
-
-                    {% block article %}					<div class="line mt-1"></div>
-					<div class="row">
-                        {% for category in object_list %}
-						<article class="col-md-12 article-list">
-							<div class="inner">
-								<figure>
-									<a href="{% url 'blog:article-category' category.slug %}">
-										<img src="{{ category.image.url }}">
-									</a>
-								</figure>
-
-								<div class="details">
-									<div class="detail text-right d-flex">
-									<h1 class="pt-0"><a href="{% url 'blog:article-category' category.slug %}">{{ category.title|truncatewords:20  }}</a></h1>
-									<footer class="mt-2 mt-22" style="position: relative;
-									top: 140px; right: 220px;">
-										<a class="btn btn-primary more" href="{% url 'blog:article-category' category.slug%}">
-											<div>بیشتر</div>
-											<div><i class="ion-ios-arrow-thin-left"></i></div>
-										</a>
-									</footer>
-								</div>
-							</div>
-						</article>
-                        {% endfor %}
+{% block article %}
+<div class="line mt-1"></div>
+<div class="row">
+{% for category in object_list %}
+<article class="col-md-12 article-list">
+   <div class="inner">
+   <figure>
+      <a href="{% url 'blog:article-category' category.slug %}">
+      <img src="{{ category.image.url }}">
+      </a>
+   </figure>
+   <div class="details">
+      <div class="detail text-right d-flex">
+         <h1 class="pt-0"><a href="{% url 'blog:article-category' category.slug %}">{{ category.title|truncatewords:20  }}</a></h1>
+         <footer class="mt-2 mt-22" style="position: relative;
+            top: 140px; right: 220px;">
+            <a class="btn btn-primary more" href="{% url 'blog:article-category' category.slug%}">
+               <div>بیشتر</div>
+               <div><i class="ion-ios-arrow-thin-left"></i></div>
+            </a>
+         </footer>
+      </div>
+   </div>
+</article>
+{% endfor %}
 {% endblock %}
-
 {% block paginator %}
-						<div class="col-md-12 text-center d-flex justify-content-center">
-							<ul class="pagination">
-                                {% if page_obj.has_previous %}
-								<li class="prev"><a href="{% url 'blog:category' page_obj.previous_page_number %}"><i class="ion-ios-arrow-right"></i></a></li>
-                                {% endif %}
-                            {% for page in page_obj.paginator.page_range  %}
-                            {% if page == page_obj.number %}
-								<li class="active"><a href="{% url 'blog:category'  page %}">{{ page }}</a></li>
-                                {% else %}
-								<li><a href="{% url 'blog:category' page %}">{{ page }}</a></li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if page_obj.has_next %}
-								<li class="next"><a href="{% url 'blog:category' page_obj.next_page_number %}"><i class="ion-ios-arrow-left"></i></a></li>
-                            {% endif %}
-							</ul>
-						</div>
-  {% endblock %}
+<div class="col-md-12 text-center d-flex justify-content-center">
+   <ul class="pagination">
+      {% if page_obj.has_previous %}
+      <li class="prev"><a href="{% url 'blog:category' page_obj.previous_page_number %}"><i class="ion-ios-arrow-right"></i></a></li>
+      {% endif %}
+      {% for page in page_obj.paginator.page_range  %}
+      {% if page == page_obj.number %}
+      <li class="active"><a href="{% url 'blog:category'  page %}">{{ page }}</a></li>
+      {% else %}
+      <li><a href="{% url 'blog:category' page %}">{{ page }}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <li class="next"><a href="{% url 'blog:category' page_obj.next_page_number %}"><i class="ion-ios-arrow-left"></i></a></li>
+      {% endif %}
+   </ul>
+</div>
+{% endblock %}

@@ -1,17 +1,13 @@
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from blog.models import Post
-
+from django.shortcuts import redirect
 
 class FieldMixins():
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_superuser:
-            self.fields = ['author', 'title', 'slug', 'description', 'image',  'published_time', 'status' ,'category']
-
-        elif request.user.is_author:
-            self.fields = ['title', 'slug', 'description', 'image', 'published_time', 'category']
-        else:
-            raise Http404('شما اجازه افزودن پست را ندارید')
+        self.fields = ['title', 'slug', 'description', 'image',  'published_time', 'is_special', 'status', 'category']
+        if self.request.user.is_superuser:
+            self.fields.append('author')
         return super().dispatch(request, *args, **kwargs)
 
 class FormValidMixin():
@@ -21,16 +17,25 @@ class FormValidMixin():
         else:
             self.obj = form.save(commit=False)
             self.obj.author = self.request.user
-            self.obj.status = 'd'
+            if not self.obj.status == 'i':
+                self.obj.status = 'd'
         return super().form_valid(form)
 
 class AuthorAccessArticleMixin():
     def dispatch(self, request, pk, *args, **kwargs):
         article = get_object_or_404(Post, pk=pk)
-        if article.author == request.user and article.status == 'd' or request.user.is_superuser:
+        if article.author == request.user and article.status in ['b', 'd'] or request.user.is_superuser:
             return super().dispatch(request, pk, *args, **kwargs)
         else:
-            raise Http404('شما اجازه ویرایش این صفحه را ندارید')
+            raise Http404('شما اجازه دسترسی به این صفحه را ندارید.')
+
+class AuthorSuperUsersAccessMixin():
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_author or request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return redirect('account:profile')
+
 
 class ArticleDeleteMixin():
     def dispatch(self, request, *args, **kwargs):
@@ -39,4 +44,11 @@ class ArticleDeleteMixin():
         else:
             raise Http404('شما اجازه حذف مقالات را ندارید.')
 
-
+class LoginMixin():
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            if request.user.is_superuser or request.user.is_author:
+                return redirect('account:home')
+            else:
+                return redirect('account:profile')
+        return super().dispatch(request, *args, **kwargs)

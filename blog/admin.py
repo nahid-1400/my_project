@@ -39,7 +39,7 @@ def make_draft(self, request, queryset):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'image_tag', 'author', 'j_published', 'updated', 'status', 'category_to_str', 'number_post')
+    list_display = ('title', 'image_tag', 'author', 'j_published', 'updated', 'is_special', 'status', 'category_to_str', 'number_post')
     list_filter = ('published_time', 'status', 'author')
     search_fields = ('title', 'description')
     prepopulated_fields = {'slug': ('title',)}

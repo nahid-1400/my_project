@@ -1,84 +1,74 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html dir="rtl">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="قالب خبری Magz">
-	<meta name="author" content="Kodinger">
-	<meta name="keyword" content="قالب خبری، قالب اچ تی ام ال، قالب خبری مگز">
-	<!-- Shareable -->
-	<meta property="og:title" content="قالب خبری Magz" />
-	<meta property="og:type" content="article" />
-	<title>{%block title%}{% endblock %}</title>
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="{% static 'blog/scripts/bootstrap/bootstrap.min.css'%}">
-	<link rel="stylesheet" href="{% static 'blog/css/bootstrap-rtl.min.css'%}">
-	<!-- Icons -->
-	<link rel="stylesheet" href="{% static 'blog/scripts/ionicons/css/ionicons.min.css'%}">
-	<link rel="stylesheet" href="{% static 'blog/scripts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
-	<link rel="stylesheet" href="{% static 'blog/scripts/fontawesome-5.0.8/css/fontawesome-all.min.css'%}">
-	<!-- Toast -->
-	<link rel="stylesheet" href="{% static 'blog/scripts/toast/jquery.toast.min.css'%}">
-	<!-- OwlCarousel -->
-	<link rel="stylesheet" href="{% static 'blog/scripts/owlcarousel/dist/assets/owl.carousel.min.css'%}">
-	<link rel="stylesheet" href="{% static 'blog/scripts/owlcarousel/dist/assets/owl.theme.default.min.css'%}">
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="{% static 'blog/scripts/magnific-popup/dist/magnific-popup.css'%}">
-	<link rel="stylesheet" href="{% static 'blog/scripts/sweetalert/dist/sweetalert.css'%}">
-	<!-- Custom style -->
-	<link rel="stylesheet" href="{% static 'blog/css/style.css'%}">
-	<link rel="stylesheet" href="{% static 'blog/css/skins/all.css'%}">
-	<link rel="stylesheet" href="{% static 'blog/css/demo.css'%}">
-    <style>
-        p {
-  text-align: justify;
-  text-justify: inter-word;
-    }
-    </style>
-
-{% block r_header %}
-{% endblock %}
-</head>
-
-<body class="skin-orange">
-	<!-- Start header -->
-
-	{% block header %}
-    {% endblock %}
-    	<!-- End header -->
-
-    	<!-- Start main -->
-
-    {% block main%}
-    {% endblock %}
-	<!-- End main -->
-
-	<!-- Start footer -->
-	{% block footer %}
-    {% endblock %}
-	<!-- End Footer -->
-
-	<!-- JS -->
-	<script src="{% static 'blog/js/jquery.js'%}"></script>
-	<script src="{% static 'blog/js/jquery.migrate.js'%}"></script>
-	<script src="{% static 'blog/scripts/bootstrap/bootstrap.min.js'%}"></script>
-	<script>
-		var $target_end = $(".best-of-the-week");
-	</script>
-	<script src="{% static 'blog/scripts/jquery-number/jquery.number.min.js'%}"></script>
-	<script src="{% static 'blog/scripts/owlcarousel/dist/owl.carousel.min.js'%}"></script>
-	<script src="{% static 'blog/scripts/magnific-popup/dist/jquery.magnific-popup.min.js'%}"></script>
-	<script src="{% static 'blog/scripts/easescroll/jquery.easeScroll.js'%}"></script>
-	<script src="{% static 'blog/scripts/sweetalert/dist/sweetalert.min.js'%}"></script>
-	<script src="{% static 'blog/scripts/toast/jquery.toast.min.js'%}"></script>
-	<script src="{% static 'blog/js/demo.js'%}"></script>
-	<script src="{% static 'blog/js/e-magz.js'%}"></script>
-{% block r_footer %}
-{% endblock %}
-</body>
-
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="description" content="قالب خبری Magz">
+      <meta name="author" content="Kodinger">
+      <meta name="keyword" content="قالب خبری، قالب اچ تی ام ال، قالب خبری مگز">
+      <!-- Shareable -->
+      <meta property="og:title" content="قالب خبری Magz" />
+      <meta property="og:type" content="article" />
+      <title>{%block title%}{% endblock %}</title>
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="{% static 'blog/scripts/bootstrap/bootstrap.min.css'%}">
+      <link rel="stylesheet" href="{% static 'blog/css/bootstrap-rtl.min.css'%}">
+      <!-- Icons -->
+      <link rel="stylesheet" href="{% static 'blog/scripts/ionicons/css/ionicons.min.css'%}">
+      <link rel="stylesheet" href="{% static 'blog/scripts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+      <link rel="stylesheet" href="{% static 'blog/scripts/fontawesome-5.0.8/css/fontawesome-all.min.css'%}">
+      <!-- Toast -->
+      <link rel="stylesheet" href="{% static 'blog/scripts/toast/jquery.toast.min.css'%}">
+      <!-- OwlCarousel -->
+      <link rel="stylesheet" href="{% static 'blog/scripts/owlcarousel/dist/assets/owl.carousel.min.css'%}">
+      <link rel="stylesheet" href="{% static 'blog/scripts/owlcarousel/dist/assets/owl.theme.default.min.css'%}">
+      <!-- Magnific Popup -->
+      <link rel="stylesheet" href="{% static 'blog/scripts/magnific-popup/dist/magnific-popup.css'%}">
+      <link rel="stylesheet" href="{% static 'blog/scripts/sweetalert/dist/sweetalert.css'%}">
+      <!-- Custom style -->
+      <link rel="stylesheet" href="{% static 'blog/css/style.css'%}">
+      <link rel="stylesheet" href="{% static 'blog/css/skins/all.css'%}">
+      <link rel="stylesheet" href="{% static 'blog/css/demo.css'%}">
+      <style>
+         p {
+         text-align: justify;
+         text-justify: inter-word;
+         }
+      </style>
+      {% block r_header %}
+      {% endblock %}
+   </head>
+   <body class="skin-orange">
+      <!-- Start header -->
+      {% block header %}
+      {% endblock %}
+      <!-- End header -->
+      <!-- Start main -->
+      {% block main%}
+      {% endblock %}
+      <!-- End main -->
+      <!-- Start footer -->
+      {% block footer %}
+      {% endblock %}
+      <!-- End Footer -->
+      <!-- JS -->
+      <script src="{% static 'blog/js/jquery.js'%}"></script>
+      <script src="{% static 'blog/js/jquery.migrate.js'%}"></script>
+      <script src="{% static 'blog/scripts/bootstrap/bootstrap.min.js'%}"></script>
+      <script>
+         var $target_end = $(".best-of-the-week");
+      </script>
+      <script src="{% static 'blog/scripts/jquery-number/jquery.number.min.js'%}"></script>
+      <script src="{% static 'blog/scripts/owlcarousel/dist/owl.carousel.min.js'%}"></script>
+      <script src="{% static 'blog/scripts/magnific-popup/dist/jquery.magnific-popup.min.js'%}"></script>
+      <script src="{% static 'blog/scripts/easescroll/jquery.easeScroll.js'%}"></script>
+      <script src="{% static 'blog/scripts/sweetalert/dist/sweetalert.min.js'%}"></script>
+      <script src="{% static 'blog/scripts/toast/jquery.toast.min.js'%}"></script>
+      <script src="{% static 'blog/js/demo.js'%}"></script>
+      <script src="{% static 'blog/js/e-magz.js'%}"></script>
+      {% block r_footer %}
+      {% endblock %}
+   </body>
 </html>

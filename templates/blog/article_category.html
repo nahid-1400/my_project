@@ -1,73 +1,75 @@
 {% extends 'blog/../shared/category_base.html'%}
 {%block title%}
- دسته بندی | {{category.title}}
+دسته بندی | {{category.title}}
 {% endblock %}
-
 {% block cat_title %}
-						<div class="col-md-12">
-							<ol class="breadcrumb">
-								<li><a href="#">خانه</a></li>
-								<li><a href="#">دسته بندی</a></li>
-								<li class="active">{{ category.title }}</li>
-							</ol>
-							<h1 class="page-title mt-3">دسته بندی : {{ category.title }}</h1>
-							<p class="page-subtitle text-large mb-4">نمایش پست ها با دسته بندی <i>{{ category.title }}</i></p>
-						</div>
+<div class="col-md-12">
+   <ol class="breadcrumb">
+      <li><a href="#">خانه</a></li>
+      <li><a href="{% url 'blog:category' %}">دسته بندی</a></li>
+      <li class="active">{{ category.title }}</li>
+   </ol>
+   <h1 class="page-title mt-3">دسته بندی : {{ category.title }}</h1>
+   <p class="page-subtitle text-large mb-4">نمایش پست ها با دسته بندی <i>{{ category.title }}</i></p>
+</div>
 {% endblock %}
-                    {% block article %}
-                        <div class="line mt-1"></div>
-					<div class="row">
-                        {% for post in object_list %}
-						<article class="col-md-12 article-list">
-							<div class="inner">
-								<figure>
-									<a href="{% url 'blog:detail' post.slug post.id %}">
-										<img src="{{ post.image.url }}">
-									</a>
-								</figure>
-								<div class="details">
-									<div class="detail text-right d-flex">
-										<div class="category">
-                                            {% for cat in post.category_published.all %}
-											<a href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
-                                                {% endfor %}
-										</div>
-										<div class="time"><i class="fa fa-clock"></i> {{post.j_published}}</div>
-									</div>
-									<h1 class="pt-0"><a href="{% url 'blog:detail' post.slug post.id %}">{{ post.title|truncatewords:20  }}</a></h1>
-									<p>{{ post.description|striptags|truncatewords:40 }}
-									</p>
-									<footer class="mt-2">
-										<a href="#" class="love"><i class="ion-android-favorite-outline"></i>
-											<div>145</div>
-										</a>
-										<a class="btn btn-primary more" href="{% url 'blog:detail' post.slug post.id%}">
-											<div>بیشتر</div>
-											<div><i class="ion-ios-arrow-thin-left"></i></div>
-										</a>
-									</footer>
-								</div>
-							</div>
-						</article>
-                        {% endfor %}
+{% block article %}
+<div class="line mt-1"></div>
+<div class="row">
+{% for post in object_list %}
+<article class="col-md-12 article-list">
+   <div class="inner">
+      <figure>
+         <a href="{% url 'blog:detail' post.slug post.id %}">
+         <img src="{{ post.image.url }}">
+         </a>
+      </figure>
+      <div class="details">
+         <div class="detail text-right d-flex">
+            <div class="category">
+               {% for cat in post.category_published.all %}
+               <a href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+               {% endfor %}
+            </div>
+            <div class="time"><i class="fa fa-clock"></i> {{post.j_published}}</div>
+         </div>
+         {% if post.is_special %}
+         <span class="badge badge-danger" style="font-size: 10px;">ویژه</span>
+         {% endif %}
+         <h1 class="pt-0"><a href="{% url 'blog:detail' post.slug post.id %}">{{ post.title|truncatewords:20  }}</a></h1>
+         <p>{{ post.description|striptags|truncatewords:40 }}
+         </p>
+         <footer class="mt-2">
+            <a href="#" class="love">
+               <i class="ion-android-favorite-outline"></i>
+               <div>145</div>
+            </a>
+            <a class="btn btn-primary more" href="{% url 'blog:detail' post.slug post.id%}">
+               <div>بیشتر</div>
+               <div><i class="ion-ios-arrow-thin-left"></i></div>
+            </a>
+         </footer>
+      </div>
+   </div>
+</article>
+{% endfor %}
 {% endblock %}
-
 {% block paginator %}
-						<div class="col-md-12 text-center d-flex justify-content-center">
-							<ul class="pagination">
-                                {% if page_obj.has_previous %}
-								<li class="prev"><a href="{% url 'blog:article-category' category.slug page_obj.previous_page_number %}"><i class="ion-ios-arrow-right"></i></a></li>
-                                {% endif %}
-                            {% for page in page_obj.paginator.page_range  %}
-                            {% if page == page_obj.number %}
-								<li class="active"><a href="{% url 'blog:article-category' category.slug page %}">{{ page }}</a></li>
-                                {% else %}
-								<li><a href="{% url 'blog:article-category' category.slug page %}">{{ page }}</a></li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if page_obj.has_next %}
-								<li class="next"><a href="{% url 'blog:article-category' category.slug page_obj.next_page_number %}"><i class="ion-ios-arrow-left"></i></a></li>
-                            {% endif %}
-							</ul>
-						</div>
-  {% endblock %}
+<div class="col-md-12 text-center d-flex justify-content-center">
+   <ul class="pagination">
+      {% if page_obj.has_previous %}
+      <li class="prev"><a href="{% url 'blog:article-category' category.slug page_obj.previous_page_number %}"><i class="ion-ios-arrow-right"></i></a></li>
+      {% endif %}
+      {% for page in page_obj.paginator.page_range  %}
+      {% if page == page_obj.number %}
+      <li class="active"><a href="{% url 'blog:article-category' category.slug page %}">{{ page }}</a></li>
+      {% else %}
+      <li><a href="{% url 'blog:article-category' category.slug page %}">{{ page }}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <li class="next"><a href="{% url 'blog:article-category' category.slug page_obj.next_page_number %}"><i class="ion-ios-arrow-left"></i></a></li>
+      {% endif %}
+   </ul>
+</div>
+{% endblock %}

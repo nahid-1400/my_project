@@ -7,7 +7,7 @@ from .models import CateGory
 from django.core.paginator import Paginator
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-
+from account.mixins import AuthorAccessArticleMixin
 
 def my_grouper(n, iterable):
     args = [iter(iterable)] * n
@@ -45,6 +45,13 @@ class DetailClass(DetailView):
         id = self.kwargs.get('id')
         slug = self.kwargs.get('slug')
         return get_object_or_404(Post.objects.published(), slug=slug, id=id)
+
+class ArticlePreview(AuthorAccessArticleMixin, DetailView):
+    template_name = 'blog/single-post.html'
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get('pk')
+        slug = self.kwargs.get('slug')
+        return get_object_or_404(Post.objects, slug=slug, pk=pk)
 
 # def category_view(request, slug, page=1):
 #     category = get_object_or_404(CateGory.objects.category_status(slug))
