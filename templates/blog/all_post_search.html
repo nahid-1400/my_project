@@ -1,0 +1,385 @@
+{% extends 'blog/../shared/base.html' %}
+{% load static %}
+{%block title%}
+    {% if url == 'blog:search' %}
+ جستوجو | {{ q }}
+    {% else %}
+    مقالات
+    {% endif %}
+{% endblock %}
+{% load static %}
+{% load render_partial %}
+{% load base_tags %}
+{% block header %}
+{% render_partial 'header'%}
+    	<link rel="stylesheet" href="{% static 'blog/scripts/icheck/skins/all.css' %}">
+{% endblock %}
+{% block main %}
+
+	<section class="search">
+		<div class="container">
+			<div class="row justify-content-center">
+				<!-- Sidebar Widget -->
+				<div class="col-12 col-sm-9 col-md-12 col-lg-3 mb-5">
+            {% if url == 'blog:search' %}
+					<aside>
+						<h2 class="aside-title text-dark text-large">جستجو</h2>
+						<div class="aside-body">
+							<p class="text-dark text-right">جستجو بر اساس کلید واژه های جدید</p>
+							<form class="search" autocomplete="off" action="{% url 'blog:search' %}">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" name="q" class="form-control text-right"
+											placeholder="جستجو ..." value="">
+										<div class="input-group-btn">
+											<button class="btn btn-primary">
+												<i class="ion-search"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</aside>
+            {% endif %}
+                					<aside>
+				<h2 class="aside-title text-dark text-large">فیلتر بر اساس </h2>
+						<div class="aside-body">
+							<form class="checkbox-group">
+								<div class="group-title text-right text-large text-dark mb-3">زمان</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="iradio_square-red" style="position: relative;">
+											<div class="iradio_square-red" style="position: relative;"><input
+													type="radio" name="date" checked=""
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> همه زمان ها
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="iradio_square-red" style="position: relative;">
+											<div class="iradio_square-red" style="position: relative;"><input
+													type="radio" name="date"
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> امروز
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="iradio_square-red" style="position: relative;">
+											<div class="iradio_square-red" style="position: relative;"><input
+													type="radio" name="date"
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> یک هفته اخیر
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="iradio_square-red" style="position: relative;">
+											<div class="iradio_square-red" style="position: relative;"><input
+													type="radio" name="date"
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> یک ماه اخیر
+									</label>
+								</div>
+								<br>
+								<div class="group-title text-right text-large text-dark mb-3">دسته بندی</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="icheckbox_square-red" style="position: relative;">
+											<div class="icheckbox_square-red" style="position: relative;">
+												<input type="checkbox" name="category" checked=""
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> همه دسته بندی ها
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="icheckbox_square-red" style="position: relative;">
+											<div class="icheckbox_square-red" style="position: relative;"><input
+													type="checkbox" name="category"
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> اقتصادی
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="icheckbox_square-red" style="position: relative;">
+											<div class="icheckbox_square-red" style="position: relative;"><input
+													type="checkbox" name="category"
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> سلامت
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="icheckbox_square-red" style="position: relative;">
+											<div class="icheckbox_square-red" style="position: relative;"><input
+													type="checkbox" name="category"
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> ورزشی
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="icheckbox_square-red" style="position: relative;">
+											<div class="icheckbox_square-red" style="position: relative;"><input
+													type="checkbox" name="category"
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> هنری
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="check-label">
+										<div class="icheckbox_square-red" style="position: relative;">
+											<div class="icheckbox_square-red" style="position: relative;"><input
+													type="checkbox" name="category"
+													style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+													style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+											</div><ins class="iCheck-helper"
+												style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0; cursor: pointer;"></ins>
+										</div> فرهنگی
+									</label>
+								</div>
+							</form>
+						</div>
+					</aside>
+
+				</div>
+
+
+				<!-- Intro News Tabs Area -->
+				<div class="col-12 col-lg-9">
+
+					<div class="nav-tabs-group mb-3">
+						<ul class="nav-tabs-list" style="overflow: hidden;">
+							<li class="tablinks" onclick="open_article(event,'all-post')" id="defaultOpen"><a href="#all-post">همه</a></li>
+							<li class="tablinks" onclick="open_article(event,'new-post')"><a  href="#new-post">جدید ترین</a></li>
+							<li class="tablinks" onclick="open_article(event,'love-post')"><a href="#love-post">محبوب ترین</a></li>
+							<li class="tablinks" onclick="open_article(event,'visit-post')"><a href="#visit-post">پربازدید ترین</a></li>
+						</ul>
+					</div>
+                            {% if url == 'blog:search' %}
+					<div class="search-result text-right text-dark text-large mb-4">
+						نتایج جستجو برای کلید واژه "{{ q }}" در بین {{ all_post.count }} خبر
+					</div>
+                {% endif %}
+{#             all post #}
+                                    <div class="row tabcontent" id="all-post" >
+                        {% for post in all_post %}
+                        	<article class="col-md-12 article-list" >
+							<div class="inner">
+								<figure>
+									<a href="{% url 'blog:detail' post.slug post.id%}">
+										<img src="{{ post.image.url }}">
+									</a>
+								</figure>
+								<div class="details">
+									<div class="detail text-right d-flex">
+										<div class="category">
+                                            {% for cat in post.category.all|slice:"1" %}
+											<a href="{% url 'blog:article-category' cat.slug %}">{{ cat.title }}</a>
+                                                {% endfor %}
+										</div>
+										<div class="time"><i class="fa fa-clock"></i>{{ post.j_published}}</div>
+									</div>
+									<h1 class="pt-0"><a href="{% url 'blog:detail' post.slug post.id%}">{{ post.title }}</a></h1>
+									<p>
+                                        {{ post.description|striptags|truncatewords:40|safe }}
+									</p>
+									<footer class="mt-2">
+										<a href="#" class="love"><i class="ion-android-favorite-outline"></i>
+											<div>{{ post.like_user.count }}</div>
+										</a>
+										<a class="btn btn-primary more" href="single-post.html">
+											<div>بیشتر</div>
+											<div><i class="ion-ios-arrow-thin-left"></i></div>
+										</a>
+									</footer>
+								</div>
+							</div>
+						</article>
+                        {% endfor %}
+                                    </div>
+                {#       end      all post #}
+
+                    {#             new post #}
+                <div class="row tabcontent" id="new-post">
+                        {% for post in new_post %}
+                        <article class="col-md-12 article-list" >
+							<div class="inner">
+								<figure>
+									<a href="{% url 'blog:detail' post.slug post.id%}">
+										<img src="{{ post.image.url }}">
+									</a>
+								</figure>
+								<div class="details">
+									<div class="detail text-right d-flex">
+										<div class="category">
+                                            {% for cat in post.category.all|slice:"1" %}
+											<a href="{% url 'blog:article-category' cat.slug %}">{{cat.title }}</a>
+                                                {% endfor %}
+										</div>
+										<div class="time"><i class="fa fa-clock"></i>{{ post.j_published}}</div>
+									</div>
+									<h1 class="pt-0"><a href="{% url 'blog:detail' post.slug post.id%}">{{ post.title }}</a></h1>
+									<p>
+                                        {{ post.description|striptags|truncatewords:40|safe }}
+									</p>
+									<footer class="mt-2">
+										<a href="#" class="love"><i class="ion-android-favorite-outline"></i>
+											<div>{{ post.like_user.count }}</div>
+										</a>
+										<a class="btn btn-primary more" href="single-post.html">
+											<div>بیشتر</div>
+											<div><i class="ion-ios-arrow-thin-left"></i></div>
+										</a>
+									</footer>
+								</div>
+							</div>
+						</article>
+                        {% endfor %}
+                </div>
+                        {#          end   new post #}
+
+                    {#             love post #}
+                                <div class="row tabcontent" id="love-post">
+                        {% for post in purpal_news %}
+                        <article class="col-md-12 article-list" >
+							<div class="inner">
+								<figure>
+									<a href="{% url 'blog:detail' post.slug post.id%}">
+										<img src="{{ post.image.url }}">
+									</a>
+								</figure>
+								<div class="details">
+									<div class="detail text-right d-flex">
+										<div class="category">
+                                            {% for cat in post.category.all|slice:"1" %}
+											<a href="{% url 'blog:article-category' cat.slug %}">{{cat.title }}</a>
+                                                {% endfor %}
+										</div>
+										<div class="time"><i class="fa fa-clock"></i>{{ post.j_published}}</div>
+									</div>
+									<h1 class="pt-0"><a href="{% url 'blog:detail' post.slug post.id%}">{{ post.title }}</a></h1>
+									<p>
+                                        {{ post.description|striptags|truncatewords:40|safe }}
+									</p>
+									<footer class="mt-2">
+										<a href="#" class="love"><i class="ion-android-favorite-outline"></i>
+											<div>{{ post.like_user.count }}</div>
+										</a>
+										<a class="btn btn-primary more" href="single-post.html">
+											<div>بیشتر</div>
+											<div><i class="ion-ios-arrow-thin-left"></i></div>
+										</a>
+									</footer>
+								</div>
+							</div>
+						</article>
+                        {% endfor %}
+                                </div>
+                                                          {#          end   love post #}
+
+                                      {#             visit post #}
+                                <div class="row tabcontent" id="visit-post" >
+                        {% for post in max_vist_news %}
+                        <article class="col-md-12 article-list" >
+							<div class="inner">
+								<figure>
+									<a href="{% url 'blog:detail' post.slug post.id%}">
+										<img src="{{ post.image.url }}">
+									</a>
+								</figure>
+								<div class="details">
+									<div class="detail text-right d-flex">
+										<div class="category">
+                                            {% for cat in post.category.all|slice:"1" %}
+											<a href="{% url 'blog:article-category' cat.slug %}">{{cat.title }}</a>
+                                                {% endfor %}
+										</div>
+										<div class="time"><i class="fa fa-clock"></i>{{ post.j_published}}</div>
+									</div>
+									<h1 class="pt-0"><a href="{% url 'blog:detail' post.slug post.id%}">{{ post.title }}</a></h1>
+									<p>
+                                        {{ post.description|striptags|truncatewords:40|safe }}
+									</p>
+									<footer class="mt-2">
+										<a href="#" class="love"><i class="ion-android-favorite-outline"></i>
+											<div>{{ post.like_user.count }}</div>
+										</a>
+										<a class="btn btn-primary more" href="single-post.html">
+											<div>بیشتر</div>
+											<div><i class="ion-ios-arrow-thin-left"></i></div>
+										</a>
+									</footer>
+								</div>
+							</div>
+						</article>
+                        {% endfor %}
+                                </div>
+                                                          {#       end      visit post #}
+
+	</section>
+
+	<!-- Start footer -->
+
+	{% endblock main %}
+{% block footer %}
+{% footer_view %}
+        <script>
+    function open_article(evt, article_name) {
+        var i, tab_content, tab_links;
+        tab_content = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tab_content.length; i++) {
+            tab_content[i].style.display = "none"
+        }
+        tab_links = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tab_links.length; i++) {
+            tab_links[i].className = tab_links[i].className.replace(" active", "")
+        }
+        document.getElementById(article_name).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById('defaultOpen').click()
+    </script>
+    	<script>
+		$("input").iCheck({
+			checkboxClass: 'icheckbox_square-red',
+			radioClass: 'iradio_square-red',
+			cursor: true
+		});
+	</script>
+    	<script src="{% static 'blog/scripts/icheck/icheck.min.js' %}"></script>
+
+
+{% endblock %}

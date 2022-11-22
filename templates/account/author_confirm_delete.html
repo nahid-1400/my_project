@@ -1,0 +1,111 @@
+{% extends 'account/base_registration.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block head %}
+<title>حذف مقاله</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static 'account/adminLTE/plugins/fontawesome-free/css/all.min.css' %}">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bbootstrap 4 -->
+<link rel="stylesheet" href="{%  static 'account/adminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+<!-- iCheck -->
+<link rel="stylesheet" href="{%  static 'account/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+<!-- JQVMap -->
+<link rel="stylesheet" href="{%  static 'account/adminLTE/plugins/jqvmap/jqvmap.min.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{%  static 'account/adminLTE/dist/css/adminlte.min.css' %}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="{%  static 'account/adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="{%  static 'account/adminLTE/plugins/daterangepicker/daterangepicker.css' %}">
+<!-- summernote -->
+<link rel="stylesheet" href="{%  static 'account/adminLTE/plugins/summernote/summernote-bs4.css' %}">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<!-- Bootstrap 4 RTL -->
+<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+<!-- Custom style for RTL -->
+<link rel="stylesheet" href="{%  static 'account/adminLTE/dist/css/custom.css' %}">
+{% endblock %}
+<body>
+   {% block navbar %}
+   {% include 'account/navbar.html' %}
+   {% endblock %}
+   {% block main %}
+   <!-- Content Header (Page header) -->
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6 rtl">
+               <ol class="breadcrumb float-sm-left">
+                  <li class="breadcrumb-item"><a href="{% url 'account:home' %}">خانه</a></li>
+                  <li class="breadcrumb-item active"> حذف مقاله</li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   <!-- /.content-header -->
+   <!-- Main content -->
+   <div class="col-md-8 text-center mx-auto">
+      <div class="card card-danger">
+         <div class="card-header">
+            <h3 class="card-title mb-0 float-left">حذف مقاله</h3>
+         </div>
+         <div class="card-body">
+            <form method="post">
+               {% csrf_token %}
+               <p> آیا از حذف مقاله <strong>«{{ object }}»</strong> نوشته شده توسط  <strong>«{{ object.author }}»</strong> اطمینان دارید؟ </p>
+               {{ form }}
+               <input type="submit" class="btn btn-danger " value="بله">
+               <a type="button"  class="btn btn-success " href="{% url 'account:home' %}">خیر</a>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- /.content -->
+   {% endblock %}
+   {% block js_jquery %}
+   <!-- jQuery -->
+   <script src="{% static 'account/adminLTE/plugins/jquery/jquery.min.js' %}"></script>
+   <!-- jQuery UI 1.11.4 -->
+   <script src="{% static 'account/adminLTE/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+   <script>
+      $.widget.bridge('uibutton', $.ui.button)
+   </script>
+   <!-- Bootstrap 4 rtl -->
+   <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
+   <!-- Bootstrap 4 -->
+   <script src="{% static 'account/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+   <!-- ChartJS -->
+   <script src="{% static 'account/adminLTE/plugins/chart.js/Chart.min.js' %}"></script>
+   <!-- Sparkline -->
+   <script src="{% static 'account/adminLTE/plugins/sparklines/sparkline.js' %}"></script>
+   <!-- JQVMap -->
+   <script src="{% static 'account/adminLTE/plugins/jqvmap/jquery.vmap.min.js' %}"></script>
+   <script src="{% static 'account/adminLTE/plugins/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+   <!-- jQuery Knob Chart -->
+   <script src="{% static 'account/adminLTE/plugins/jquery-knob/jquery.knob.min.js' %}"></script>
+   <!-- daterangepicker -->
+   <script src="{% static 'account/adminLTE/plugins/moment/moment.min.js' %}"></script>
+   <script src="{% static 'account/adminLTE/plugins/daterangepicker/daterangepicker.js' %}"></script>
+   <!-- Tempusdominus Bootstrap 4 -->
+   <script src="{% static 'account/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+   <!-- Summernote -->
+   <script src="{% static 'account/adminLTE/plugins/summernote/summernote-bs4.min.js' %}"></script>
+   <!-- overlayScrollbars -->
+   <script src="{% static 'account/adminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+   <!-- AdminLTE App -->
+   <script src="{% static 'account/adminLTE/dist/js/adminlte.js' %}"></script>
+   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+   <script src="{% static 'account/adminLTE/dist/js/pages/dashboard.js' %}"></script>
+   <!-- AdminLTE for demo purposes -->
+   <script src="{% static 'account/adminLTE/dist/js/demo.js' %}"></script>
+   {% endblock %}

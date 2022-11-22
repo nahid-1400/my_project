@@ -3,7 +3,7 @@
 {% load render_partial %}
 {% load base_tags %}
 {% block header %}
-{% header_view %}
+{% render_partial 'header'%}
 {% endblock %}
 {% block main %}
 <section class="category first" style="padding-top: 366px;">
@@ -21,75 +21,55 @@
          </div>
       </div>
       <div class="col-md-12 col-lg-4 sidebar">
-         <aside>
-            <div class="aside-body">
-               <figure class="ads">
-                  <a href="single-post.html">
-                  <img src="{% static 'blog/images/ad.png' %}">
-                  </a>
-                  <figcaption class="text-center">تبلغات</figcaption>
-               </figure>
-            </div>
-         </aside>
-         <aside>
             <h1 class="aside-title">اخبار جدید</h1>
             <div class="aside-body">
+                {% for end_new in end_news1 %}
                <article class="article-fw">
                   <div class="inner">
                      <figure>
-                        <a href="single-post.html">
-                        <img src="{% static 'blog/images/news/img12.jpg' %}">
+                        <a href="{% url 'blog:detail' end_new.slug end_new.id %}">
+                        <img src="{{ end_new.image.url }}">
                         </a>
                      </figure>
                      <div class="details">
-                        <h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a>
+                        <h1><a href="{% url 'blog:detail' end_new.slug end_new.id %}">{{ end_new.title }}</a>
                         </h1>
                         <p>
-                           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
-                           تولید سادگی نامفهوملورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.
+                            {{ end_new.descriptions }}
                         </p>
                         <div class="detail">
-                           <div class="time">20 فروردین ۱۳۹۸</div>
-                           <div class="category"><a href="category.html">سلامت</a></div>
+                           <div class="time">{{ end_new.j_published }}</div>
+                            {% for cat in end_new.category.all|slice:"1" %}
+                           <div class="category"><a href="{% url 'blog:article-category' cat.slug %}">{{ cat.title }}</a></div>
+                                {% endfor %}
                         </div>
                      </div>
                   </div>
                </article>
+                {% endfor %}
                <div class="line"></div>
+                    {% for end_new in end_news2 %}
                <article class="article-mini">
                   <div class="inner">
                      <figure>
-                        <a href="single-post.html">
-                        <img src="{% static 'blog/images/news/img05.jpg' %}">
+                        <a href="{% url 'blog:detail' end_new.slug end_new.id %}">
+                        <img src="{{ end_new.image.url }}">
                         </a>
                      </figure>
                      <div class="padding">
-                        <h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a>
+                        <h1><a href="{% url 'blog:detail' end_new.slug end_new.id %}">{{ end_new.title }}</a>
                         </h1>
                         <div class="detail">
-                           <div class="category"><a href="category.html">{{ category.title }}</a></div>
-                           <div class="time">19 فروردین ۱۳۹۸</div>
+                            {% for cat in end_new.category.all|slice:"1" %}
+                           <div class="category"><a href="{% url 'blog:article-category' cat.slug %}">{{ cat.title }}</a></div>
+                                {% endfor %}
+                           <div class="time">{{ end_new.j_published }}</div>
                         </div>
                      </div>
                   </div>
                </article>
-               <article class="article-mini">
-                  <div class="inner">
-                     <figure>
-                        <a href="single-post.html">
-                        <img src="{% static 'blog/images/news/img02.jpg' %}">
-                        </a>
-                     </figure>
-                     <div class="padding">
-                        <h1><a href="single-post.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</a>
-                        </h1>
-                        <div class="detail">
-                           <div class="category"><a href="category.html">گردشگری</a></div>
-                           <div class="time">18 فروردین ۱۳۹۸</div>
-                        </div>
-                     </div>
-                  </div>
-               </article>
+                    {% endfor %}
+
             </div>
          </aside>
          <aside>

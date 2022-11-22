@@ -37,7 +37,7 @@
          <span class="badge badge-danger" style="font-size: 10px;">ویژه</span>
          {% endif %}
          <h1 class="pt-0"><a href="{% url 'blog:detail' post.slug post.id %}">{{ post.title|truncatewords:20  }}</a></h1>
-         <p>{{ post.description|striptags|truncatewords:40 }}
+         <p>{{ post.description|striptags|truncatewords:40|safe }}
          </p>
          <footer class="mt-2">
             <a href="#" class="love">

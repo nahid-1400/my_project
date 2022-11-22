@@ -1,0 +1,38 @@
+{% extends 'blog/../shared/base.html' %}
+{% load static %}
+{% load render_partial %}
+{% load base_tags %}
+{% load comment_tags %}
+{%block title%}
+لیست هشتگ ها
+{% endblock %}
+{% block header %}
+{% render_partial 'header' %}
+{% endblock %}
+{% block main %}
+
+	<section class="page">
+    <h1 style="text-align: center;margin:30px;">لیست برچسب ها</h1>
+        <hr>
+    	<div class="container">
+			<div class="row" style="display:flex">
+        {% for hashtag in hashtags_group %}
+            <div class="column" style="float: left; width:25%;flex:25%;">
+							<h1 class="title-col">برچسب های برتر</h1>
+							<div class="body-col">
+								<ol class="tags-list">
+                                    {% for tag in hashtag %}
+									<li><a href="{% url 'blog:hashtag' tag.slug tag.id tag.title%}">{{ tag.title }}</a></li>
+                                        {% endfor %}
+								</ol>
+							</div>
+            </div>
+        {% endfor %}
+                            </div>
+        </div>
+    </section>
+
+{% endblock main %}
+{% block footer %}
+{% footer_view %}
+{% endblock %}

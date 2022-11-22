@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, CateGory
+from .models import Post, CateGory, IPAddress, Slider, Hashtag
 
 
 @admin.action(description='فعال کردن دسته بندی')
@@ -52,3 +52,6 @@ class PostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Post, PostAdmin)
+admin.site.register(Slider)
+admin.site.register(Hashtag)
+admin.site.register(IPAddress)

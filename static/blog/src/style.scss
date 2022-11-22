@@ -3814,8 +3814,11 @@ blockquote {
   }
 }
 
+.tabcontent {
+    display: none;
+}
 .nav-tabs-group {
-  display: inline-block;
+  overflow: hidden;
   width: 100%;
   border-bottom: 1px solid #ddd;
   .nav-tabs-list {
@@ -3823,9 +3826,7 @@ blockquote {
     margin: 0;
     li {
       float: left;
-      display: block;
       a {
-        display: block;
         padding: 10px 20px;
         color: #999;
         font-weight: 400;
@@ -3842,6 +3843,7 @@ blockquote {
       }
     }
   }
+
   .form-control {
     height: 30px;
     padding: 0;

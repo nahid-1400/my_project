@@ -18,14 +18,18 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from account.views import Login
+from account.views import login_users, logout_user
+from .views import header_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    path('', include('django.contrib.auth.urls')),
-    path('login/', Login.as_view(), name='login'),
+    path('contact_us/', include('contact_us.urls')),
+    path('login/', login_users, name='login_user'),
+    path('logout/', logout_user, name='logout_user'),
+    path('header/', header_view, name='header'),
     path('account/', include('account.urls')),
+    path('comment/', include('comment.urls')),
 ]
 
 if settings.DEBUG:

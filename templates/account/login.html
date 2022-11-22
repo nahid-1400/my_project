@@ -1,0 +1,76 @@
+{% extends 'blog/../shared/base.html' %}
+{% load base_tags %}
+{% load render_partial %}
+{% load base_tags %}
+{%load static%}
+{% load widget_tweaks  %}
+{%block title%}
+ورود
+{% endblock %}
+{% block header %}
+{% render_partial 'header' %}
+{% endblock %}
+{% block main%}
+<section class="login first grey">
+   <div class="container">
+      <div class="box-wrapper">
+         <div class="box box-border">
+            <div class="box-body">
+               <h3 class="text-dark text-center text-xlarge mb-5">صفحه ورود</h3>
+               <form method="post">
+                  {% if error %}
+                  <div class="errors">
+                     <p style="color:red">کاربری با این مشخصات وجود ندارد.</p>
+                  </div>
+                  {% endif %}
+                  {% csrf_token %}
+                  <div class="form-group">
+                   <div class="form-group">
+								<label>نام کاربری</label>
+								<input type="text" name="username" class="form-control text-left">
+							</div>
+             <div class="form-group">
+								<label class="fw">رمز عبور
+									<a href="forgot.html" class="float-left">رمز عبور خود را فراموش کرده
+										اید؟</a>
+								</label>
+								<div style="position:relative;display:flex;width:100%;">
+									<div style="position:relative;width:100%"><input type="password" name="password"
+											class="form-control text-left" style="padding-left: 60px;"><input
+											type="hidden" id="passeye-0" value="">
+										<div class="btn btn-primary btn-sm d-none" id="passeye-toggle-0"
+											style="position:absolute;left:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;">
+											مشاهده</div>
+									</div>
+									<input type="hidden" id="passeye-0">
+									<div class="btn btn-magz btn-sm" id="passeye-toggle-0"
+										style="position:absolute;left:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;z-index: -1;">
+										مشاهده</div>
+								</div>
+							</div>
+                  <div class="form-group text-right">
+                     <button class="btn btn-primary btn-block text-center">ورود</button>
+                  </div>
+                  <div class="form-group text-center font-16">
+                     <span class="text-muted">قبلا ثبت نام نکرده اید؟</span> <a href="{% url 'account:signup' %}">ایجاد
+                     حساب کاربری</a>
+                  </div>
+                  <div class="title-line">
+                     یا
+                  </div>
+                  <a href="#" class="btn btn-social btn-block facebook text-center"><i
+                     class="ion-social-facebook"></i>
+                  ورود با حساب فیسبوک</a>
+                  <a href="#" class="btn btn-social btn-block googleplus text-center"><i
+                     class="ion-social-googleplus"></i>
+                  ورود با حساب گوگل</a>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}
+{% block footer %}
+{% footer_view %}
+{% endblock %}

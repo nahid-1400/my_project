@@ -2,6 +2,12 @@ from django.contrib import admin
 from .models import User
 from django.contrib.auth.admin import UserAdmin
 
+UserAdmin.fieldsets[1][1]['fields'] = (
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "profile_image"
+                )
 UserAdmin.fieldsets[2][1]['fields'] = (
                     "is_active",
                     "is_staff",

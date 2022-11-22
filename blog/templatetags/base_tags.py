@@ -1,21 +1,21 @@
 from django import template
-from ..models import CateGory
+from blog.models import Post, Hashtag
+from django.db.models import Count
 
 
 register = template.Library()
 
-@register.inclusion_tag('shared/Header.html')
-def header_view():
-    category = CateGory.objects.filter(status=True)
-    context = {'category': category}
-    return context
-
-
 @register.inclusion_tag('shared/footer.html')
 def footer_view():
-    pass
+    end_posts = Post.objects.published()[:4]
+    best_tag = Hashtag.objects.all().annotate(count=Count('post')).order_by('-count').distinct()[:7]
+    return {
+        'end_posts': end_posts,
+        'best_tag': best_tag
+    }
 
-@register.inclusion_tag('registration/partials/link.html')
+
+@register.inclusion_tag('account/partials/link.html')
 def link(request, link_name, content, icon):
     return {
         'request': request,

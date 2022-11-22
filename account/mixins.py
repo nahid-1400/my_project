@@ -44,11 +44,3 @@ class ArticleDeleteMixin():
         else:
             raise Http404('شما اجازه حذف مقالات را ندارید.')
 
-class LoginMixin():
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            if request.user.is_superuser or request.user.is_author:
-                return redirect('account:home')
-            else:
-                return redirect('account:profile')
-        return super().dispatch(request, *args, **kwargs)

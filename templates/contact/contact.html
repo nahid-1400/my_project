@@ -1,0 +1,88 @@
+{% extends 'blog/../shared/base.html' %}
+{% load base_tags %}
+{% load render_partial %}
+{% load base_tags %}
+{%load static%}
+{% load crispy_forms_tags %}
+{%block title%}
+تماس با ما
+{% endblock %}
+{% block header %}
+{% render_partial 'header' %}
+{% endblock %}
+{% block main%}
+	<section class="page">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ol class="breadcrumb d-flex justify-content-center">
+						<li><a href="#">خانه</a></li>
+						<li class="active">تماس با ما</li>
+					</ol>
+					<h1 class="page-title text-dark text-xlarge text-bold text-center">تماس با ما</h1>
+					<div class="line thin"></div>
+					<div class="page-description">
+						<div class="row">
+							<div class="col-md-6 col-sm-6 mt-5">
+								<h4 class="mb-5">راه های ارتباطی</h4>
+								<div class="single-contact-info d-flex align-items-center mb-3">
+									<div class="icon ml-2">
+										<img src="images/map-pin.png" alt="">
+									</div>
+									<p class="text-dark">تهران، میدان آزادی</p>
+								</div>
+								<div class="single-contact-info d-flex align-items-center mb-3">
+									<div class="icon ml-2">
+										<img src="images/smartphone.png" alt="">
+									</div>
+									<p class="text-dark">55443322</p>
+								</div>
+								<div class="single-contact-info d-flex align-items-center mb-3">
+									<div class="icon ml-2">
+										<img src="images/paper-plane.png" alt="">
+									</div>
+									<p class="text-dark">yourmail@gmail.com</p>
+								</div>
+								<div class="contact-social-info mt-5 float-right">
+									<a href="#" class="text-dark"><i class="fab fa-pinterest ml-2"
+											aria-hidden="true"></i></a>
+									<a href="#" class="text-dark"><i class="fab fa-facebook ml-2"
+											aria-hidden="true"></i></a>
+									<a href="#" class="text-dark"><i class="fab fa-twitter ml-2"
+											aria-hidden="true"></i></a>
+									<a href="#" class="text-dark"><i class="fab fa-instagram ml-2"
+											aria-hidden="true"></i></a>
+									<a href="#" class="text-dark"><i class="fa fa-send ml-2" aria-hidden="true"></i></a>
+									<a href="#" class="text-dark"><i class="fab fa-linkedin ml-2"
+											aria-hidden="true"></i></a>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form.user }}
+									<div class="col-md-12">
+										<div class="form-group">
+                                            {{ form.subject|as_crispy_field }}
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+                                            {{ form.message_text|as_crispy_field }}
+										</div>
+									</div>
+									<div class="col-md-12">
+										<button type="submit" class="btn btn-primary float-right">ارسال پیام</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+{% block footer %}
+{% footer_view %}
+{% endblock %}

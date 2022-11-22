@@ -32,7 +32,28 @@ class UpdateUser(forms.ModelForm):
 
 
 class SignupForm(UserCreationForm):
+    username = forms.CharField(max_length=200)
     email = forms.EmailField(max_length=200)
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
+    password = forms.PasswordInput()
+    confirm_password = forms.PasswordInput()
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        exits_username = User.objects.filter(username=username).exists()
+        if exits_username:
+            forms.ValidationError('نام کاربری وجود دارد')
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        exits_email = User.objects.filter(email=email).exists()
+        if exits_email:
+            forms.ValidationError('نام کاربری وجود دارد')
+        return email
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        confirm_password = self.cleaned_data.get('confirm_password')
+        if password != confirm_password:
+            forms.ValidationError('رمز های عبور مطابقت ندارند')
+        return password

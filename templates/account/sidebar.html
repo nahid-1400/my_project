@@ -1,0 +1,54 @@
+{% load static %}
+{% load base_tags %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" >
+   <!-- Brand Logo -->
+   <a href="index3.html" class="brand-link">
+   <img src="{% static 'account/adminLTE/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+   <span class="brand-text font-weight-light" style="margin-left: 100px;">سایت خبری</span>
+   </a>
+   <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+         <div class="image">
+           <img src="{{ user.profile_image.url }}" class="img-circle elevation-2" alt="User Image">
+
+         </div>
+         <div class="in fo">
+            <a href="{% url 'account:profile' %}" class="d-block">{{ user.username }}</a>
+         </div>
+      </div>
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" >
+            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+            {% if user.is_superuser or user.is_author %}
+            <li class="nav-item has-treeview menu-open" style="margin-right: 1%;">
+               <a href="#" class="nav-link active" >
+                  <i class="nav-icon fas fa-tachometer-alt" ></i>
+                  <p style="margin-right: 0; margin-left: 90%;">
+                     مقالات
+                     <i class="right fas fa-angle-left"></i>
+                  </p>
+               </a>
+               <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                     {% link request 'home' 'لیست مقالات' 'list nav-icon' %}
+                  </li>
+                  <li class="nav-item">
+                     {% link request 'article-create' 'افزودن مقاله' 'edit' %}
+                  </li>
+               </ul>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+               {% link request 'profile' 'پروفایل' 'fas fa-th' %}
+            </li>
+         </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+   </div>
+</aside>

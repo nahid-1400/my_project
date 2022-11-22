@@ -1,0 +1,24 @@
+{% extends 'blog/../shared/base.html' %}
+{% load base_tags %}
+{% load render_partial %}
+{% load base_tags %}
+{%load static%}
+{% load crispy_forms_tags %}
+{%block title%}
+تماس با ما
+{% endblock %}
+{% block header %}
+{% render_partial 'header' %}
+{% endblock %}
+{% block main%}
+	<section class="page">
+		<div class="container">
+			<div class="row">
+                <h1>ارسال تیکت شما با موفقیت انجام شد.</h1>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+{% block footer %}
+{% footer_view %}
+{% endblock %}

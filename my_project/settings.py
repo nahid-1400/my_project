@@ -15,9 +15,9 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-LOGIN_REDIRECT_URL = 'account:home'
-LOGOUT_REDIRECT_URL = 'login'
-LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'account:login_user'
+LOGOUT_REDIRECT_URL = 'login:login_user'
+LOGIN_URL = 'login:login_user'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -46,10 +46,16 @@ INSTALLED_APPS = [
     'extensions',
     'widget_tweaks',
     'crispy_forms',
+    'django_gravatar',
+    'comment',
+    'contact_us',
 
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+import socket
+socket.getaddrinfo('localhost', 8080)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'blog.middleware.SaveIPAddressMiddleware'
 ]
 
 ROOT_URLCONF = 'my_project.urls'
@@ -80,7 +87,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'my_project.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
